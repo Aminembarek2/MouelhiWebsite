@@ -1,0 +1,35 @@
+{% if videos %}
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="videoh1">
+                    Videos Gallery
+                </h1>
+                <hr>
+                <ul class="box-container three-cols">
+                            <!-- Video -->
+                            {% for video in videos %}
+                            <li class="box">
+                                <div class="inner">
+                                {% if video.video %}
+                                    <a href="{{video.video.url}}" class="glightbox3">
+                                        <img class="video" src="{{ video.image.url }}" alt="{{video.title}}">
+                                    </a>
+                                </div>
+                                {% else %}
+                                    <a href="{{video.video_url}}" class="glightbox3">
+                                        <img class="video" src="{{ video.image.url }}" alt="{{video.title}}">
+                                    </a>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            <!-- /Video -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

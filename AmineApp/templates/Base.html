@@ -1,0 +1,95 @@
+{% load static %}
+<html>
+
+    <head>
+        <title>Amine Mouelhi</title>
+        <link rel="shortcut icon" href="{% static 'media/icon.png' %}" />
+        <meta charset="UTF8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Links Css -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/glightbox.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="https://kit.fontawesome.com/2f267365e7.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        {% block content %}
+            
+        {% endblock content %}
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- JS link -->
+        <script src="{% static 'js/style.js' %}"></script>
+        <script src="{% static 'js/valde.min.js' %}"></script>
+        <script src="{% static 'js/glightbox.js' %}"></script>
+        <script src="{% static 'js/site.js' %}"></script>
+        <!-- Function used to shrink nav bar removing paddings and adding black background -->
+        <script>
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 50) {
+                    $('.nav').addClass('affix');
+                    console.log("OK");
+                } else {
+                    $('.nav').removeClass('affix');
+                }
+            });
+        </script>    
+        <script>
+                $('.navTrigger').click(function () {
+            $(this).toggleClass('active');
+            console.log("Clicked menu");
+            $("#mainListDiv").toggleClass("show_list");
+            $("#mainListDiv").fadeIn();
+
+        });
+        </script>
+         <script>
+            var lightbox = GLightbox();
+            lightbox.on('open', (target) => {
+                console.log('lightbox opened');
+            });
+            var lightboxDescription = GLightbox({
+                selector: '.glightbox2'
+            });
+            var lightboxVideo = GLightbox({
+                selector: '.glightbox3'
+            });
+            lightboxVideo.on('slide_changed', ({ prev, current }) => {
+                console.log('Prev slide', prev);
+                console.log('Current slide', current);
+
+                const { slideIndex, slideNode, slideConfig, player } = current;
+
+                if (player) {
+                    if (!player.ready) {
+                        // If player is not ready
+                        player.on('ready', (event) => {
+                            // Do something when video is ready
+                        });
+                    }
+
+                    player.on('play', (event) => {
+                        console.log('Started play');
+                    });
+
+                    player.on('volumechange', (event) => {
+                        console.log('Volume change');
+                    });
+
+                    player.on('ended', (event) => {
+                        console.log('Video ended');
+                    });
+                }
+            });
+
+            var lightboxInlineIframe = GLightbox({
+                selector: '.glightbox4'
+            });
+        </script>
+    </body>
+</html>

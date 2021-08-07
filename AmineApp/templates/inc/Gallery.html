@@ -1,0 +1,26 @@
+{% if posts %}
+
+<section class="section pair">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="galleryh1">
+                    Gallery
+                </h1>
+                <hr>
+                <ul class="box-container three-cols">
+                    {% for post in posts %}
+                    <li class="box show" style="transition-delay: 0s;">
+                        <div class="inner">
+                            <a href="{{post.image.url}}" class="glightbox">
+                                <img src="{{post.image.url}}" alt="image">
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor%}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
