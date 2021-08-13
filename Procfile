@@ -1,1 +1,1 @@
-web: gunicorn AmineApp.wsgi
+web: gunicorn AmineProject.wsgi
